@@ -9,10 +9,15 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
+      - name: Double check sha and tag
+        run: |
+          curl -o subo.tar.gz https://github.com/suborbital/subo/archive/v${{ github.event.client_payload.tag }}.tar.gz"
+          echo sha256sum subo.tar.gz
+          rm subo.tar.gz
       - name: Creates new file
         run: |
           sed 's/<<<tag>>>/${{ github.event.client_payload.tag }}/g' .github/actions/formula.tmpl > ./some/subdirectory/here/formula.rb
-          sed -i 's/<<<sha>>>/${{ github.event.client_payload.sha }}/g' ./some/subdirectory/here/formula.rb
+          sed -i 's/<<<sha256>>>/${{ github.event.client_payload.sha }}/g' ./some/subdirectory/here/formula.rb
       - name: Creates PR
         uses: peter-evans/create-pull-request@v3
         with:
