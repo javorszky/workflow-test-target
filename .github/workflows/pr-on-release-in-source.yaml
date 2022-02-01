@@ -12,13 +12,13 @@ jobs:
       - name: Creates new file
         run: |
           sed 's/<<<tag>>>/${{ github.event.client_payload.tag }}/g' .github/actions/formula.tmpl > ./some/subdirectory/here/formula.rb
-          sed 's/<<<sha>>>/${{ github.event.client_payload.sha }}/g' ./some/subdirectory/here/formula.rb
+          sed -i 's/<<<sha>>>/${{ github.event.client_payload.sha }}/g' ./some/subdirectory/here/formula.rb
       - name: Creates PR
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: Update homebrew formula to version v${{ github.event.client_payload.tag }}
           committer: Github <noreply@github.com>
-          branch: brew-on-release-${{ github.event.client_payloag.tag }}yaml
+          branch: brew-on-release-${{ github.event.client_payload.tag }}-yaml
           delete-branch: true
           title: '[Auto] Update formula to version v${{ github.event.client_payload.tag }} after release'
           body: |
