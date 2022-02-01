@@ -12,7 +12,7 @@ jobs:
       - name: Double check sha and tag
         run: |
           curl -L -o subo.tar.gz https://github.com/suborbital/subo/archive/v${{ github.event.client_payload.tag }}.tar.gz
-          echo ${{ github.event.client_payload.sha }} subo.tar.gz
+          echo ${{ github.event.client_payload.sha }} subo.tar.gz | sha256sum --check
           rm subo.tar.gz
       - name: Creates new file
         run: |
