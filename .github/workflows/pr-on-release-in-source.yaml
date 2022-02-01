@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Creates new file
         run: |
-          sed 's/<<<tag>>>/${{ github.event.client_payload.tag }}/g' .github/actions/formula.tmpl > some/subdirectory/here/formula.rb'
+          sed 's/<<<tag>>>/${{ github.event.client_payload.tag }}/g' .github/actions/formula.tmpl > some/subdirectory/here/formula.rb
           sed 's/<<<sha>>>/${{ github.event.client_payload.sha }}/g' some/subdirectory/here/formula.rb
       - name: Creates PR
         uses: peter-evans/create-pull-request@v3
