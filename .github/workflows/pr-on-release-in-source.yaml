@@ -18,9 +18,9 @@ jobs:
         with:
           commit-message: Update homebrew formula to version v${{ github.event.client_payload.tag }}
           committer: Github <noreply@github.com>
-          branch: brew-on-release-${{ github.event.client_payloag.tag }}
+          branch: brew-on-release-${{ github.event.client_payloag.tag }}yaml
           delete-branch: true
-          title: [Auto] Update formula to version v${{ github.event.client_payload.tag }} after release
+          title: \[Auto\] Update formula to version v${{ github.event.client_payload.tag }} after release
           body: |
             Update formula after release at ${{ github.event.client_payload.release_url }}
 
